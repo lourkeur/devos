@@ -4,11 +4,4 @@
 # installed by the user elsewhere in the configuration.
 pkgs:
 with pkgs;
-[
-  starship
-  element-desktop
-  discord
-  signal-desktop
-  dhall
-  nixpkgs-fmt
-]
+[ ]
