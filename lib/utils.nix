@@ -17,7 +17,6 @@ let
   pkgImport = { pkgs, system, overlays }:
     import pkgs {
       inherit system overlays;
-      config = { allowUnfree = true; };
     };
 
   # Convert a list to file paths to attribute set
