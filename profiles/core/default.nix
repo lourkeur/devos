@@ -50,6 +50,8 @@ in
         # bsdtar (multi-format archive)
         tar = "bsdtar";
 
+        e = "$EDITOR";
+
         # git
         g = "git";
 
@@ -132,11 +134,7 @@ in
 
   };
 
-  programs.bash = {
-    shellInit = ''
-      eval "$(${pkgs.direnv}/bin/direnv hook bash)"
-    '';
-  };
+  programs.fish.enable = true;
 
   programs.autojump.enable = true;
 
@@ -160,6 +158,7 @@ in
     passwordAuthentication = false;
   };
 
+  users.defaultUserShell = "/run/current-system/sw/bin/fish";
   users.mutableUsers = false;
 
 }
