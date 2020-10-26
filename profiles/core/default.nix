@@ -24,6 +24,7 @@ in
       gptfdisk
       iputils
       jq
+      libarchive
       moreutils
       nmap
       ripgrep
@@ -40,6 +41,9 @@ in
         "..." = "cd ../..";
         "...." = "cd ../../..";
         "....." = "cd ../../../..";
+
+        # bsdtar (multi-format archive)
+        tar = "bsdtar";
 
         # git
         g = "git";
