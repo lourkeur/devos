@@ -84,9 +84,26 @@ in
         up = ifSudo "s systemctl start";
         dn = ifSudo "s systemctl stop";
         jtl = "journalctl";
-
       };
+  };
 
+  fonts = {
+    fonts = with pkgs; [ source-code-pro libertinus ];
+
+    fontconfig.defaultFonts = {
+      monospace = lib.mkBefore [ "Source Code Pro" ];
+      sansSerif = lib.mkBefore [ "Libertinus Sans" ];
+      serif = lib.mkBefore [ "Libertinus Serif" ];
+    };
+
+    # lowercase numerals
+    fontconfig.localConf = ''
+    <match target="font">
+      <edit name="fontfeatures" mode="append">
+        <string>onum on</string>
+      </edit>
+    </match>
+    '';
   };
 
   nix = {
