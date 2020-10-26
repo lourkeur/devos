@@ -9,6 +9,8 @@ in
 
   imports = [ ../../local/locale.nix ];
 
+  console.useXkbConfig = true;
+
   environment = {
 
     variables.CDPATH = ["." "~"];
@@ -29,6 +31,7 @@ in
       libarchive
       moreutils
       nmap
+      pass-otp
       ripgrep
       utillinux
       whois
@@ -146,6 +149,16 @@ in
   };
 
   services.earlyoom.enable = true;
+
+  services.openssh = {
+    enable = true;
+    startWhenNeeded = true;
+
+    # hardening
+    permitRootLogin = "no";
+    challengeResponseAuthentication = false;
+    passwordAuthentication = false;
+  };
 
   users.mutableUsers = false;
 
