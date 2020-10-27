@@ -156,6 +156,8 @@ in
 
     protectKernelImage = true;
 
+    pam.enableSSHAgentAuth = true;
+
   };
 
   services.earlyoom.enable = true;
