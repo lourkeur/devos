@@ -150,6 +150,9 @@ in
 
   programs.autojump.enable = true;
 
+  programs.gnupg.agent.enable = true;
+  programs.gnupg.agent.enableSSHSupport = true;
+
   security = {
 
     hideProcessInformation = true;
