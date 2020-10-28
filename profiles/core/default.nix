@@ -153,6 +153,11 @@ in
   programs.gnupg.agent.enable = true;
   programs.gnupg.agent.enableSSHSupport = true;
 
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
   security = {
 
     hideProcessInformation = true;
