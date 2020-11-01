@@ -6,4 +6,8 @@ pkgs:
 with pkgs;
 [
     brave
+    firefox
+    tor-browser-bundle-bin
+
+    obs-studio
 ]
