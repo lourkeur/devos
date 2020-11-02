@@ -41,6 +41,7 @@ in
       less
       libarchive
       moreutils
+      nix-direnv  # need to enable in ~/.direnvrc
       nmap
       pass-otp
       ripgrep
