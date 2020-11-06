@@ -8,6 +8,7 @@ with pkgs;
     brave
     firefox
     tor-browser-bundle-bin
+    vscodium
 
     obs-studio
 ]
