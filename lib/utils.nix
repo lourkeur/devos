@@ -17,6 +17,7 @@ let
   pkgImport = { pkgs, system, overlays }:
     import pkgs {
       inherit system overlays;
+      config = import ../nixpkgs/config.nix { inherit lib; };
     };
 
   # Convert a list to file paths to attribute set
