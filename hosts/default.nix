@@ -50,7 +50,7 @@ let
                 override = import ../pkgs/override.nix unstablePkgs;
 
                 overlay = pkg: final: prev: {
-                  "${pkg.pname}" = pkg;
+                  "${lib.getName pkg}" = pkg;
                 };
               in
               map overlay override;

@@ -11,4 +11,6 @@ with pkgs;
     vscodium
 
     obs-studio
+
+    android-studio
 ]
