@@ -6,7 +6,7 @@ pkgs:
 with pkgs;
 [
     brave
-    firefox
+    firefox-bin
     tor-browser-bundle-bin
     vscodium
 
