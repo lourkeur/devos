@@ -5,7 +5,6 @@
     # passwd is empty by default
     ../users/root
     "${modulesPath}/installer/cd-dvd/iso-image.nix"
-    ../profiles/core
   ];
 
   isoImage.makeEfiBootable = true;
