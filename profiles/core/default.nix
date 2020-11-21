@@ -135,8 +135,6 @@ in
 
     autoOptimiseStore = true;
 
-    gc.automatic = true;
-
     useSandbox = true;
 
     allowedUsers = [ "nix-ssh" "@wheel" ];
@@ -186,6 +184,11 @@ in
     pam.enableSSHAgentAuth = true;
 
   };
+
+  nix.gc.automatic = true;
+  nix.gc.options = "--delete-older-than 1w";
+  nix.gc.dates = "Sun 03:15";
+  systemd.timers.nix-gc.timerConfig.Persistent = true;
 
   services.earlyoom.enable = true;
 
