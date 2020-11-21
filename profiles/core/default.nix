@@ -145,7 +145,7 @@ in
 
     extraOptions = ''
       experimental-features = nix-command flakes ca-references
-      min-free = 536870912
+      min-free = ${toString (512 * 1024 * 1024)}
     '';
 
     sshServe = {
