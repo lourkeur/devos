@@ -38,7 +38,6 @@ let
             nix.registry = {
               nixos.flake = nixos;
               nixflk.flake = self;
-              nixpkgs.flake = master;
             };
 
             system.configurationRevision = lib.mkIf (self ? rev) self.rev;
