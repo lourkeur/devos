@@ -91,8 +91,7 @@ in
         nrb = ifSudo "sudo nixos-rebuild";
 
         # sudo
-        s = ifSudo "sudo -E ";
-        si = ifSudo "sudo -i";
+        s = ifSudo (pkgs.writers.writeC "s" {} ./s.c);
         se = ifSudo "sudoedit";
 
         # top
