@@ -1,5 +1,6 @@
 { modulesPath, ... }: {
   imports = [
+    ../users/root
     ../users/louis
     "${modulesPath}/installer/cd-dvd/iso-image.nix"
   ];

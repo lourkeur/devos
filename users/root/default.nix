@@ -1,4 +1,8 @@
 # recommend using `hashedPassword`
 {
-  users.users.root.password = "";
+  users.users.root = {
+    openssh.authorizedKeys.keyFiles = [
+      ../louis/id_gpgcard.pub
+    ];
+  };
 }

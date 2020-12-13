@@ -187,7 +187,7 @@ in
     startWhenNeeded = true;
 
     # hardening
-    permitRootLogin = "no";
+    permitRootLogin = "prohibit-password";
     challengeResponseAuthentication = false;
     passwordAuthentication = false;
   };
