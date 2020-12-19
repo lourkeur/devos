@@ -11,6 +11,8 @@
 
   services.mingetty.autologinUser = "louis";
 
+  programs.gnupg.agent.pinentryFlavor = "curses";
+
   isoImage.contents = [ {
     source = ../secrets/id_niximg;
     target = "id_niximg";
