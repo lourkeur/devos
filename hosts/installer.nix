@@ -5,6 +5,8 @@
     "${modulesPath}/installer/cd-dvd/iso-image.nix"
   ];
 
+  boot.initrd.kernelModules = [ "dm-raid" ];
+
   isoImage.makeEfiBootable = true;
   isoImage.makeUsbBootable = true;
   networking.networkmanager.enable = true;
