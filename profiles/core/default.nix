@@ -142,6 +142,7 @@ in
       experimental-features = nix-command flakes ca-references
       min-free = ${toString (5  * 1024 * 1024 * 1024)}
       max-free = ${toString (10 * 1024 * 1024 * 1024)}
+      builders-use-substitutes = true
     '';
 
     binaryCaches = lib.mkAfter (lib.optional (config.networking.hostName != "hadron" && !config.special.roaming) "ssh-ng://nix-ssh@hadron");
