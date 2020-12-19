@@ -132,8 +132,6 @@ in
 
   nix = {
 
-    autoOptimiseStore = true;
-
     useSandbox = true;
 
     allowedUsers = [ "nix-ssh" "@wheel" ];
