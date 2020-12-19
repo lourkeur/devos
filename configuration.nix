@@ -15,11 +15,7 @@ let
 in
 {
   imports = (import ./modules/list.nix) ++ [
-    "${
-      builtins.fetchTarball
-        "https://github.com/rycee/home-manager/archive/master.tar.gz"
-      }/nixos"
-    /etc/nixos/profiles/core.nix
+    /etc/nixos/profiles/core
   ] ++ config;
 
   networking.hostName = hostname;
