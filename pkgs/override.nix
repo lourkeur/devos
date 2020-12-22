@@ -6,11 +6,9 @@ pkgs:
 with pkgs;
 [
     brave
-    firefox-bin
     tor-browser-bundle-bin
     vscodium
     vscode-with-extensions
-    thunderbird-bin
 
     obs-studio
 
