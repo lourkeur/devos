@@ -9,7 +9,7 @@
       flake-utils.url = "github:numtide/flake-utils";
     };
 
-  outputs = inputs@{ self, home, nixos, master, flake-utils }:
+  outputs = inputs@{ self, home, nixos, master, flake-utils, nur }:
     let
       inherit (builtins) attrNames attrValues readDir elem;
       inherit (flake-utils.lib) eachDefaultSystem;
@@ -21,6 +21,8 @@
       utils = import ./lib/utils.nix { inherit lib; };
 
       system = "x86_64-linux";
+
+      externOverlays = [ nur.overlay ];
 
       pkgset =
         let overlays = attrValues self.overlays; in
