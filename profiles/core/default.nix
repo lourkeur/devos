@@ -170,8 +170,6 @@ in
 
     hideProcessInformation = true;
 
-    protectKernelImage = true;
-
     pam.enableSSHAgentAuth = true;
 
   };
