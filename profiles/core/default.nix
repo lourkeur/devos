@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, system, ... }:
 let inherit (lib) fileContents;
 
 in
@@ -85,7 +85,9 @@ in
         up = ifSudo "s systemctl start";
         dn = ifSudo "s systemctl stop";
         jtl = "journalctl";
-
+        
+	# weird unintuitive alias just for the example
+	uname = "echo ${system}";
       };
 
   };
