@@ -7,5 +7,8 @@
 
   networking.networkmanager.enable = true;
 
+  specialisation."teeheehee".config = {
+  };
+
   fileSystems."/" = { device = "/dev/disk/by-label/nixos"; };
 }
