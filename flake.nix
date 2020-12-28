@@ -6,87 +6,78 @@
       master.url = "nixpkgs/master";
       nixos.url = "nixpkgs/release-20.09";
       home.url = "github:nix-community/home-manager/release-20.09";
+      flake-utils.url = "github:numtide/flake-utils";
     };
 
-  outputs = inputs@{ self, home, nixos, master }:
+  outputs = inputs@{ self, home, nixos, master, flake-utils }:
     let
-      inherit (builtins) attrNames attrValues readDir;
+      inherit (builtins) attrNames attrValues readDir elem;
+      inherit (flake-utils.lib) eachDefaultSystem;
       inherit (nixos) lib;
-      inherit (lib) removeSuffix recursiveUpdate genAttrs filterAttrs;
-      inherit (utils) pathsToImportedAttrs;
+      inherit (lib) all removeSuffix recursiveUpdate genAttrs filterAttrs;
+      inherit (utils) pathsToImportedAttrs genPkgset overlayPaths modules
+        genPackages pkgImport;
 
       utils = import ./lib/utils.nix { inherit lib; };
 
       system = "x86_64-linux";
 
-      pkgImport = pkgs:
-        import pkgs {
-          inherit system;
-          overlays = attrValues self.overlays;
-          config = { allowUnfree = true; };
+      pkgset =
+        let overlays = attrValues self.overlays; in
+        genPkgset {
+          inherit master nixos overlays system;
         };
 
-      pkgset = {
-        osPkgs = pkgImport nixos;
-        pkgs = pkgImport master;
-      };
+      outputs = {
+        nixosConfigurations =
+          import ./hosts (recursiveUpdate inputs {
+            inherit lib pkgset system utils;
+          });
 
+        overlay = import ./pkgs;
+
+        overlays = pathsToImportedAttrs overlayPaths;
+
+        nixosModules = modules;
+
+        templates.flk.path = ./.;
+
+        templates.flk.description = "flk template";
+
+        defaultTemplate = self.templates.flk;
+      };
     in
-    with pkgset;
-    {
-      nixosConfigurations =
-        import ./hosts (recursiveUpdate inputs {
-          inherit lib pkgset system utils;
-        }
-        );
+    (eachDefaultSystem (system':
+      let
+        pkgs' = pkgImport {
+          pkgs = nixos;
+          system = system';
+          overlays = [ ];
+        };
+      in
+      {
+        devShell = import ./shell.nix {
+          pkgs = pkgs';
+        };
 
-      devShell."${system}" = import ./shell.nix {
-        inherit pkgs;
-      };
+        packages =
+          let
+            packages' = genPackages {
+              overlay = self.overlay;
+              overlays = self.overlays;
+              pkgs = pkgs';
+            };
 
-      overlay = import ./pkgs;
-
-      overlays =
-        let
-          overlayDir = ./overlays;
-          fullPath = name: overlayDir + "/${name}";
-          overlayPaths = map fullPath (attrNames (readDir overlayDir));
-        in
-        pathsToImportedAttrs overlayPaths;
-
-      packages."${system}" =
-        let
-          packages = self.overlay osPkgs osPkgs;
-          overlays = lib.filterAttrs (n: v: n != "pkgs") self.overlays;
-          overlayPkgs =
-            genAttrs
-              (attrNames overlays)
-              (name: (overlays."${name}" osPkgs osPkgs)."${name}");
-        in
-        recursiveUpdate packages overlayPkgs;
-
-      nixosModules =
-        let
-          # binary cache
-          cachix = import ./cachix.nix;
-          cachixAttrs = { inherit cachix; };
-
-          # modules
-          moduleList = import ./modules/list.nix;
-          modulesAttrs = pathsToImportedAttrs moduleList;
-
-          # profiles
-          profilesList = import ./profiles/list.nix;
-          profilesAttrs = { profiles = pathsToImportedAttrs profilesList; };
-
-        in
-        recursiveUpdate
-          (recursiveUpdate cachixAttrs modulesAttrs)
-          profilesAttrs;
-
-      templates.flk.path = ./.;
-      templates.flk.description = "flk template";
-
-      defaultTemplate = self.templates.flk;
-    };
+            filtered = filterAttrs
+              (_: v:
+                (v.meta ? platforms)
+                && (elem system' v.meta.platforms)
+                && (
+                  (all (dev: dev.meta ? platforms) v.buildInputs)
+                  && (all (dev: elem system' dev.meta.platforms) v.buildInputs)
+                ))
+              packages';
+          in
+          filtered;
+      })) // outputs;
 }
