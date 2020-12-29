@@ -175,7 +175,13 @@ in
   nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 1w";
   nix.gc.dates = "Sat 03:15";
-  systemd.timers.nix-gc.timerConfig.Persistent = true;
+
+  system.autoUpgrade = {
+    enable = true;
+    flake = "github:lourkeur/nixflk";
+    dates = "12:00";
+    randomizedDelaySec = "15min";
+  };
 
   services.earlyoom.enable = true;
 
