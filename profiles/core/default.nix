@@ -183,6 +183,16 @@ in
     randomizedDelaySec = "15min";
   };
 
+  systemd.services.nix-gc.serviceConfig = {
+    # allows After dependencies to fire after the GC is done.
+    Type = "oneshot";
+  };
+  systemd.services.nix-optimise-store = {
+    wantedBy = [ "nix-gc.service" ];
+    after = [ "nix-gc.service" ];
+    script = "exec ${config.nix.package.out}/bin/nix-store --optimise";
+  };
+
   services.earlyoom.enable = true;
 
   services.openssh = {
