@@ -30,7 +30,6 @@ in
       binutils
       coreutils
       curl
-      direnv
       dnsutils
       dosfstools
       fd
@@ -43,7 +42,6 @@ in
       less
       libarchive
       moreutils
-      nix-direnv  # need to enable in ~/.direnvrc
       nmap
       pass-otp
       ripgrep
