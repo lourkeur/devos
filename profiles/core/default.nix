@@ -139,6 +139,8 @@ in
       min-free = ${toString (5  * 1024 * 1024 * 1024)}
       max-free = ${toString (10 * 1024 * 1024 * 1024)}
       builders-use-substitutes = true
+      keep-outputs =  true
+      keep-derivations = true
     '';
 
     daemonNiceLevel = 1;
