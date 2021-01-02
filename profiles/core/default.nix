@@ -175,6 +175,7 @@ in
   nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 1w";
   nix.gc.dates = "Sat 03:15";
+  systemd.timers.nix-gc.timerConfig.Persistent = true;
 
   systemd.services.nix-gc.serviceConfig = {
     # allows After dependencies to fire after the GC is done.

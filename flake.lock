@@ -51,11 +51,11 @@
     },
     "nixos": {
       "locked": {
-        "lastModified": 1609411768,
-        "narHash": "sha256-Z0wjR7uX/IIEbK+0dp7USVjCtr2sEU2q/+/I1ir9ZjE=",
-        "owner": "lourkeur",
+        "lastModified": 1609394754,
+        "narHash": "sha256-b8T8B40G9nk1E332KxaXQmmcjtjt+0fMNE00EznBJGw=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0738a583b1d23642f034e24889aa13cadfba1df8",
+        "rev": "3bd6c7a6f480fa9920a9bb2edf337e6655ab17b2",
         "type": "github"
       },
       "original": {
