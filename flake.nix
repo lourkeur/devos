@@ -25,7 +25,7 @@
       externOverlays = [ nur.overlay ];
 
       pkgset =
-        let overlays = attrValues self.overlays; in
+        let overlays = attrValues self.overlays ++ externOverlays; in
         genPkgset {
           inherit master nixos overlays system;
         };
