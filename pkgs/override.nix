@@ -7,8 +7,6 @@ with pkgs;
 [
     brave
     tor-browser-bundle-bin
-    vscodium
-    vscode-with-extensions
 
     obs-studio
 
