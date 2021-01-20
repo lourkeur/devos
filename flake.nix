@@ -20,7 +20,7 @@
 
       utils = import ./lib/utils.nix { inherit lib; };
 
-      system = "aarch64-linux";
+      system = "x86_64-linux";
 
       externOverlays = [ nur.overlay ];
 
