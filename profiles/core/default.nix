@@ -44,6 +44,7 @@ in
       moreutils
       nmap
       pass-otp
+      qrencode
       ripgrep
       utillinux
       whois
