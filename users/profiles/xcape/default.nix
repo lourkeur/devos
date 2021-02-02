@@ -7,7 +7,7 @@
       "Shift_R" = "Shift_R|Tab";
 
       # Compensate the lack of a ≷ on ANSI boards
-      "Shift_L" = "backslash";
+      "Shift_L" = "less";
     };
   };
 }
