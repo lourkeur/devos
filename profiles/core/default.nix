@@ -11,7 +11,7 @@ in
 
   imports = [ ../../local/locale.nix ];
 
-  services.xserver.layout = "custom_xbows";
+  services.xserver.layout = "custom";
   console.useXkbConfig = true;
 
   environment = {
