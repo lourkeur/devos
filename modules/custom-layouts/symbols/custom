@@ -73,5 +73,5 @@ xkb_symbols "custom" {
 
     // Duplicated because it gets somehow overridden
     // Compose instead of AltGr
-    key <RALT> { [ Multi_key ] };
+    include "compose(ralt)"
 };
