@@ -55,5 +55,5 @@ xkb_symbols "custom" {
     key <LSGT> { [ backslash, bar ] };
 
     // Compose instead of AltGr
-    override key <RALT> { [ Multi_key ] };
+    key <RALT> { [ Multi_key ] };
 };

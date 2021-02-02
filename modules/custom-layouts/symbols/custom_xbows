@@ -16,4 +16,8 @@ xkb_symbols "custom_xbows" {
     key  <KP7> {	[  KP_7	]	};
     key  <KP8> {	[  KP_8	]	};
     key  <KP9> {	[  KP_9	]	};
+
+    // Duplicated because it gets somehow overridden
+    // Compose instead of AltGr
+    key <RALT> { [ Multi_key ] };
 };
