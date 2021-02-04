@@ -36,7 +36,7 @@ in
       file
       git
       gptfdisk
-      htop
+      gotop
       iputils
       jq
       less
@@ -92,7 +92,7 @@ in
         se = ifSudo "sudoedit";
 
         # top
-        top = "htop";
+        top = "gotop";
 
         # systemd
         ctl = "systemctl";
