@@ -167,8 +167,6 @@ in
 
   security = {
 
-    hideProcessInformation = true;
-
     pam.enableSSHAgentAuth = true;
 
   };
