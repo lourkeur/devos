@@ -11,4 +11,6 @@ with pkgs;
     obs-studio
 
     android-studio
+
+    gotop
 ]
